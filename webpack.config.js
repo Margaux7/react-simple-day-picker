@@ -18,10 +18,17 @@ module.exports = {
   },
   module: {
     rules: [{
-      test: /\.jsx?$/,
-      use: 'babel-loader',
-      include: path.join(__dirname, 'src')
-    }]
+        test: /\.jsx?$/,
+        use: 'babel-loader',
+        include: path.join(__dirname, 'src')
+    },{
+        test: /\.css$/,
+        use: [ 'style-loader', 'css-loader' ]
+      },{
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [ 'file-loader' ]
+       }
+    ]
   }, 
   resolve: {
     extensions: ['.js', '.jsx']
