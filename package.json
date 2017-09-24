@@ -16,6 +16,7 @@
     "babel-loader": "^7.1.1",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^0.28.4",
     "file-loader": "^0.11.2",
     "style-loader": "^0.18.2",
@@ -23,7 +24,6 @@
     "webpack-dev-server": "^2.5.1"
   },
   "dependencies": {
-    "babel-preset-stage-0": "^6.24.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-hot-loader": "^3.0.0-beta.7"
