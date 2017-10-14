@@ -1,5 +1,8 @@
-import React from 'react';
+import React from 'react'
+import DayPicker from './DayPicker'
 
-const App = () => (<div>Hello from React!</div>);
+const App = () => (
+  <DayPicker date={new Date()}/>
+)
 
 export default App;
