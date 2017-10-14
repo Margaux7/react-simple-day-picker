@@ -12,24 +12,26 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
   devServer: {
-    contentBase: path.join(__dirname, "dist"),
+    contentBase: path.join(__dirname, 'dist'),
     compress: true,
-    port: 8080
+    port: 8080,
+    stats: 'errors-only'
   },
+  devtool: 'inline-cheap-module-source-map',
   module: {
     rules: [{
-        test: /\.jsx?$/,
-        use: 'babel-loader',
-        include: path.join(__dirname, 'src')
-    },{
-        test: /\.css$/,
-        use: [ 'style-loader', 'css-loader' ]
-      },{
-        test: /\.(png|svg|jpg|gif)$/,
-        use: [ 'file-loader' ]
-       }
+      test: /\.jsx?$/,
+      use: ['babel-loader', 'eslint-loader'],
+      include: path.join(__dirname, 'src')
+    }, {
+      test: /\.css$/,
+      use: [ 'style-loader', 'css-loader' ]
+    }, {
+      test: /\.(png|svg|jpg|gif)$/,
+      use: [ 'file-loader' ]
+    }
     ]
-  }, 
+  },
   resolve: {
     extensions: ['.js', '.jsx']
   },

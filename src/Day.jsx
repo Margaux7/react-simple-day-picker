@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 
 const Day = props => {
   return (
-    <td onClick={props.handleSelect(props.date)}>{props.day}</td>
+    <td onClick={() => props.handleSelect(props.date)}>
+      {props.day}
+    </td>
   )
 }
 
@@ -13,7 +15,7 @@ Day.propTypes = {
     PropTypes.string
   ]).isRequired,
   handleSelect: PropTypes.func.isRequired,
-  date: PropTypes.date.isRequired
+  date: PropTypes.instanceOf(Date).isRequired
 }
 
 export default Day
