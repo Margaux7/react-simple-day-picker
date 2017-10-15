@@ -7,8 +7,8 @@ const Weekday = props => {
     <tr>
       {
         props.days.map((day, index) => {
-          const date = new Date(props.year, props.month + 1, day)
-          return <Day key={index} day={day} date={date} {...props} />
+          const currDate = new Date(props.year, props.month, day)
+          return <Day key={index} day={day} currDate={currDate} {...props} />
         })
       }
     </tr>

@@ -18,6 +18,19 @@ class DayPicker extends React.Component {
     // this.props.onSelect()
   }
 
+  handlePrev = () => {
+    const oldDate = new Date(this.state.date)
+    const newDate = oldDate.setMonth((oldDate.getMonth() - 1) % 12)
+    this.setState({ date: newDate })
+  }
+
+  handleNext = () => {
+    const oldDate = new Date(this.state.date)
+    const newDate = oldDate.setMonth((oldDate.getMonth() + 1) % 12)
+
+    this.setState({ date: newDate })
+  }
+
   handleChange = () => {
     return null
   }
@@ -26,8 +39,8 @@ class DayPicker extends React.Component {
     const monthName = ['January', 'February', 'March', 'April', 'May', 'June',
       'July', 'August', 'September', 'October', 'November', 'December']
     const dayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-    const month = this.state.date.getMonth()
-    const year = this.state.date.getFullYear()
+    const month = new Date(this.state.date).getMonth()
+    const year = new Date(this.state.date).getFullYear()
     const firstDate = `${monthName[month]} ${1} ${year}`
     const firstDay = new Date(firstDate).toDateString().substring(0, 3)
     const dayNo = dayName.indexOf(firstDay)
@@ -42,7 +55,9 @@ class DayPicker extends React.Component {
         />
         <div>
           <div>
-            {monthName[month]} {year}
+            <button className="button-prev" onClick={this.handlePrev} />
+            <span>{monthName[month]} {year}</span>
+            <button className="button-next" onClick={this.handleNext} />
           </div>
           <DayContainer
             dayNo={dayNo}
