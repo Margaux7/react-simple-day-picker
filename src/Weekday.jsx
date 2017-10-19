@@ -4,7 +4,7 @@ import Day from './Day'
 
 const Weekday = props => {
   return (
-    <tr>
+    <tr className="picker-table-tr">
       {
         props.days.map((day, index) => {
           const currDate = new Date(props.year, props.month, day)

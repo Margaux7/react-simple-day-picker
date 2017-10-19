@@ -3,7 +3,16 @@ import PropTypes from 'prop-types'
 
 const Day = props => {
   return (
-    <td onClick={() => props.handleSelect(props.currDate)}>
+    <td
+      className={
+        props.day === '' ?
+        'picker-table-empty-td' :
+        'picker-table-td'
+      }
+      onClick={props.day === '' ?
+        null :
+        () => props.handleSelect(props.currDate)}
+    >
       {props.day}
     </td>
   )

@@ -11,9 +11,9 @@ const DayContainer = props => {
   const Row5 = daysGenerator(0, Row4[Row4.length - 1] + 1, props.maxDay)
 
   return (
-    <table>
-      <tbody>
-        <tr>
+    <table className="picker-table">
+      <tbody className="picker-table-body">
+        <tr className="picker-table-head-tr">
           {weekday.map((day, index) => {
             return <td key={index}>{day}</td>
           })}
@@ -40,7 +40,8 @@ const daysGenerator = (dayNo, firstDay, maxDay) => {
 
 DayContainer.propTypes = {
   dayNo: PropTypes.number.isRequired,
-  maxDay: PropTypes.number.isRequired
+  maxDay: PropTypes.number.isRequired,
+  isOpen: PropTypes.bool.isRequired
 }
 
 export default DayContainer

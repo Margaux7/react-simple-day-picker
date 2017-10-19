@@ -1,8 +1,27 @@
 import React from 'react'
 import DayPicker from './DayPicker'
 
-const App = () => (
-  <DayPicker date={new Date()} />
-)
+class App extends React.Component {
+  constructor() {
+    super()
+
+    this.state = {
+      date: new Date()
+    }
+  }
+
+  handleSelect = (date) => {
+    this.setState({ date })
+  }
+
+  render() {
+    return (
+      <DayPicker
+        date={this.state.date}
+        onSelect={this.handleSelect}
+      />
+    )
+  }
+}
 
 export default App

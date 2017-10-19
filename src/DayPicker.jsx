@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import DayContainer from './DayContainer'
+import './style.css'
 
 class DayPicker extends React.Component {
   constructor(props) {
@@ -13,9 +14,16 @@ class DayPicker extends React.Component {
     }
   }
 
+  showDayContainer = () => {
+    this.setState({ isOpen: true })
+  }
+
   handleSelect = (date) => {
-    this.setState({ date })
-    // this.props.onSelect()
+    this.setState(() => ({
+      date,
+      isOpen: false
+    }))
+    this.props.onSelect(date)
   }
 
   handlePrev = () => {
@@ -47,16 +55,21 @@ class DayPicker extends React.Component {
     const days = new Date(year, month + 1, 0).getDate()
 
     return (
-      <div className="day-picker">
+      <div>
         <input
+          className="picker-input"
           type="text"
           value={moment(this.state.date).format('MM / DD / YYYY')}
           onChange={this.handleChange}
+          onClick={this.showDayContainer}
         />
-        <div>
-          <div>
+        <div className={this.state.isOpen ?
+          'day-picker show-day-picker'
+          : 'day-picker not-show-day-picker'}
+        >
+          <div className="day-picker-header">
             <button className="button-prev" onClick={this.handlePrev} />
-            <span>{monthName[month]} {year}</span>
+            <span className="month-year">{monthName[month]} {year}</span>
             <button className="button-next" onClick={this.handleNext} />
           </div>
           <DayContainer
