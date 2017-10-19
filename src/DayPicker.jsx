@@ -26,17 +26,36 @@ class DayPicker extends React.Component {
     this.props.onSelect(date)
   }
 
-  handlePrev = () => {
+  handlePrevYear = () => {
     const oldDate = new Date(this.state.date)
-    const newDate = oldDate.setMonth((oldDate.getMonth() - 1) % 12)
-    this.setState({ date: newDate })
+    const newDate = oldDate.setYear(oldDate.getFullYear() - 1)
+    this.setState({ date: newDate }, () => {
+      this.props.onSelect(new Date(this.state.date))
+    })
   }
 
-  handleNext = () => {
+  handleNextYear = () => {
     const oldDate = new Date(this.state.date)
-    const newDate = oldDate.setMonth((oldDate.getMonth() + 1) % 12)
+    const newDate = oldDate.setYear(oldDate.getFullYear() + 1)
+    this.setState({ date: newDate }, () => {
+      this.props.onSelect(new Date(this.state.date))
+    })
+  }
 
-    this.setState({ date: newDate })
+  handlePrevMonth = () => {
+    const oldDate = new Date(this.state.date)
+    const newDate = oldDate.setMonth(oldDate.getMonth() - 1)
+    this.setState({ date: newDate }, () => {
+      this.props.onSelect(new Date(this.state.date))
+    })
+  }
+
+  handleNextMonth = () => {
+    const oldDate = new Date(this.state.date)
+    const newDate = oldDate.setMonth(oldDate.getMonth() + 1)
+    this.setState({ date: newDate }, () => {
+      this.props.onSelect(new Date(this.state.date))
+    })
   }
 
   handleChange = () => {
@@ -44,12 +63,14 @@ class DayPicker extends React.Component {
   }
 
   render() {
-    const monthName = ['January', 'February', 'March', 'April', 'May', 'June',
+    const monthNameEn = ['January', 'February', 'March', 'April', 'May', 'June',
       'July', 'August', 'September', 'October', 'November', 'December']
+    const monthNameZh = ['一月', '二月', '三月', '四月', '五月', '六月',
+      '七月', '八月', '九月', '十月', '十一月', '十二月']
     const dayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     const month = new Date(this.state.date).getMonth()
     const year = new Date(this.state.date).getFullYear()
-    const firstDate = `${monthName[month]} ${1} ${year}`
+    const firstDate = `${monthNameEn[month]} ${1} ${year}`
     const firstDay = new Date(firstDate).toDateString().substring(0, 3)
     const dayNo = dayName.indexOf(firstDay)
     const days = new Date(year, month + 1, 0).getDate()
@@ -68,9 +89,14 @@ class DayPicker extends React.Component {
           : 'day-picker not-show-day-picker'}
         >
           <div className="day-picker-header">
-            <button className="button-prev" onClick={this.handlePrev} />
-            <span className="month-year">{monthName[month]} {year}</span>
-            <button className="button-next" onClick={this.handleNext} />
+            <button className="button-prev-year" onClick={this.handlePrevYear} />
+            <button className="button-prev-month" onClick={this.handlePrevMonth} />
+            <span className="month-year">
+              {this.props.language === 'en' ? `${monthNameEn[month]} ${year}` :
+              `${year}年 ${monthNameZh[month]}`}
+            </span>
+            <button className="button-next-month" onClick={this.handleNextMonth} />
+            <button className="button-next-year" onClick={this.handleNextYear} />
           </div>
           <DayContainer
             dayNo={dayNo}
@@ -79,6 +105,7 @@ class DayPicker extends React.Component {
             year={year}
             handleSelect={this.handleSelect}
             isOpen={this.state.isOpen}
+            date={this.state.date}
             {...this.props}
           />
         </div>
@@ -86,15 +113,15 @@ class DayPicker extends React.Component {
     )
   }
 }
+
 DayPicker.defaultProps = {
-  onSelect: () => {
-    console.log('success!')
-  }
+  language: 'en'
 }
 
 DayPicker.propTypes = {
   date: PropTypes.instanceOf(Date).isRequired,
-  onSelect: PropTypes.func
+  language: PropTypes.string,
+  onSelect: PropTypes.func.isRequired
 }
 
 export default DayPicker

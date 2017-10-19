@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import WeekDay from './Weekday'
 
 const DayContainer = props => {
-  const weekday = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+  const weekdayEn = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+  const weekdayZh = ['日', '一', '二', '三', '四', '五', '六']
   const Row1 = daysGenerator(props.dayNo, 1, props.maxDay)
   const Row2 = daysGenerator(0, Row1[Row1.length - 1] + 1, props.maxDay)
   const Row3 = daysGenerator(0, Row2[Row2.length - 1] + 1, props.maxDay)
@@ -14,9 +15,14 @@ const DayContainer = props => {
     <table className="picker-table">
       <tbody className="picker-table-body">
         <tr className="picker-table-head-tr">
-          {weekday.map((day, index) => {
-            return <td key={index}>{day}</td>
-          })}
+          {props.language === 'en' ?
+            weekdayEn.map((day, index) => {
+              return <td key={index}>{day}</td>
+            }) :
+            weekdayZh.map((day, index) => {
+              return <td key={index}>{day}</td>
+            })
+        }
         </tr>
         <WeekDay days={Row1} {...props} />
         <WeekDay days={Row2} {...props} />
@@ -38,10 +44,15 @@ const daysGenerator = (dayNo, firstDay, maxDay) => {
   return days
 }
 
+DayContainer.defaultProps = {
+  language: 'en'
+}
+
 DayContainer.propTypes = {
   dayNo: PropTypes.number.isRequired,
   maxDay: PropTypes.number.isRequired,
-  isOpen: PropTypes.bool.isRequired
+  isOpen: PropTypes.bool.isRequired,
+  language: PropTypes.string
 }
 
 export default DayContainer

@@ -19,6 +19,7 @@ class App extends React.Component {
       <DayPicker
         date={this.state.date}
         onSelect={this.handleSelect}
+        language="en"
       />
     )
   }

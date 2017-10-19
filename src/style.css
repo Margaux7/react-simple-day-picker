@@ -22,18 +22,28 @@
 
 .day-picker .day-picker-header button {
   border: none;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.2rem;
+  height: 1.2rem;
   cursor: pointer;
   outline: none;
 }
 
-.day-picker .day-picker-header .button-prev {
+.day-picker .day-picker-header .button-prev-year {
+  background: url('./icons/left-arrows-couple.svg') no-repeat center center;
+  background-size: contain;
+}
+
+.day-picker .day-picker-header .button-next-year {
+  background: url('./icons/right-arrows-couple.svg') no-repeat center center;
+  background-size: contain;
+}
+
+.day-picker .day-picker-header .button-prev-month {
   background: url('./icons/left-arrow-angle.svg') no-repeat center center;
   background-size: contain;
 }
 
-.day-picker .day-picker-header .button-next {
+.day-picker .day-picker-header .button-next-month {
   background: url('./icons/right-arrow-angle.svg') no-repeat center center;
   background-size: contain;
 }
@@ -61,6 +71,11 @@
   border: 1px solid #bcefd0;
   cursor: pointer;
   color: #797979;
+}
+
+.picker-table .picker-table-td[data-is-selected=true] {
+  background: #23c8b2;
+  color: #fff;
 }
 
 .picker-table .picker-table-empty-td {
