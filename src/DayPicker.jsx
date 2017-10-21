@@ -48,10 +48,6 @@ class DayPicker extends React.Component {
     this.props.onSelect(newDate)
   }
 
-  handleChange = () => {
-    return null
-  }
-
   render() {
     const monthNameEn = ['January', 'February', 'March', 'April', 'May', 'June',
       'July', 'August', 'September', 'October', 'November', 'December']
@@ -74,8 +70,7 @@ class DayPicker extends React.Component {
         <input
           className="picker-input"
           type="text"
-          value={moment(this.state.date).format('MM / DD / YYYY')}
-          onChange={this.handleChange}
+          value={moment(this.props.date).format('MM / DD / YYYY')}
           onClick={this.showDayContainer}
         />
         <div className={this.state.isOpen ?

@@ -307,10 +307,6 @@ var DayPicker_DayPicker = function (_React$Component) {
       _this.props.onSelect(newDate);
     };
 
-    _this.handleChange = function () {
-      return null;
-    };
-
     _this.state = {
       isOpen: false
     };
@@ -337,8 +333,7 @@ var DayPicker_DayPicker = function (_React$Component) {
         external__react__default.a.createElement('input', {
           className: 'picker-input',
           type: 'text',
-          value: external__moment__default()(this.state.date).format('MM / DD / YYYY'),
-          onChange: this.handleChange,
+          value: external__moment__default()(this.props.date).format('MM / DD / YYYY'),
           onClick: this.showDayContainer
         }),
         external__react__default.a.createElement(

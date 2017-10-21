@@ -1,6 +1,6 @@
 {
   "name": "react-simple-day-picker",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A simple and reusable Daypicker component for React",
   "main": "dist/bundle.js",
   "repository": "https://github.com/Margaux7/react-simple-day-picker",
