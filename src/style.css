@@ -3,6 +3,7 @@
   color: #898989;
   text-align: center;
 }
+
 .show-day-picker {
   padding: 0.8rem;
   width: 16rem;
@@ -10,7 +11,8 @@
   border: 1px solid #d7dddb;
   border-radius: 4px;
   font-family: 'Times New Roman', Times, serif;
-  box-shadow: 1px 1px 1px #e7e3e2
+  box-shadow: 1px 1px 1px #e7e3e2;
+  position: fixed;
 }
 
 .day-picker .day-picker-header {

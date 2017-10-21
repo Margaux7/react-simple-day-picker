@@ -9,13 +9,13 @@ class DayPicker extends React.Component {
     super(props)
 
     this.state = {
-      date: this.props.date,
       isOpen: false
     }
   }
 
   showDayContainer = () => {
     this.setState({ isOpen: true })
+    this.setState({ date: this.props.date })
   }
 
   handleSelect = (date) => {
@@ -51,7 +51,7 @@ class DayPicker extends React.Component {
   }
 
   handleNextMonth = () => {
-    const oldDate = new Date(this.state.date)
+    const oldDate = new Date(this.props.date)
     const newDate = oldDate.setMonth(oldDate.getMonth() + 1)
     this.setState({ date: newDate }, () => {
       this.props.onSelect(new Date(this.state.date))
@@ -68,15 +68,19 @@ class DayPicker extends React.Component {
     const monthNameZh = ['一月', '二月', '三月', '四月', '五月', '六月',
       '七月', '八月', '九月', '十月', '十一月', '十二月']
     const dayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-    const month = new Date(this.state.date).getMonth()
-    const year = new Date(this.state.date).getFullYear()
+    const month = new Date(this.props.date).getMonth()
+    const year = new Date(this.props.date).getFullYear()
     const firstDate = `${monthNameEn[month]} ${1} ${year}`
     const firstDay = new Date(firstDate).toDateString().substring(0, 3)
     const dayNo = dayName.indexOf(firstDay)
     const days = new Date(year, month + 1, 0).getDate()
 
     return (
-      <div>
+      <div className={
+        this.props.customClassName ?
+        `react-day-picker ${this.props.customClassName}` :
+         'react-day-picker'}
+      >
         <input
           className="picker-input"
           type="text"
@@ -105,7 +109,7 @@ class DayPicker extends React.Component {
             year={year}
             handleSelect={this.handleSelect}
             isOpen={this.state.isOpen}
-            date={this.state.date}
+            date={this.props.date}
             {...this.props}
           />
         </div>
@@ -115,13 +119,15 @@ class DayPicker extends React.Component {
 }
 
 DayPicker.defaultProps = {
-  language: 'en'
+  language: 'en',
+  customClassName: ''
 }
 
 DayPicker.propTypes = {
   date: PropTypes.instanceOf(Date).isRequired,
   language: PropTypes.string,
-  onSelect: PropTypes.func.isRequired
+  onSelect: PropTypes.func.isRequired,
+  customClassName: PropTypes.string
 }
 
 export default DayPicker

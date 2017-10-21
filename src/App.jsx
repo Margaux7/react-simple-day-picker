@@ -16,11 +16,12 @@ class App extends React.Component {
 
   render() {
     return (
-      <DayPicker
-        date={this.state.date}
-        onSelect={this.handleSelect}
-        language="en"
-      />
+      <div>
+        <DayPicker
+          date={this.state.date}
+          onSelect={this.handleSelect}
+        />
+      </div>
     )
   }
 }

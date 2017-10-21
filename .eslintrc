@@ -21,6 +21,7 @@
         "no-param-reassign": 0,
         "react/no-typos": 0,
         "react/jsx-closing-tag-location": 0,
-        "react/no-array-index-key": 0
+        "react/no-array-index-key": 0,
+        "import/no-extraneous-dependencies": 0
     }
 }
