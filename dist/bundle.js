@@ -272,13 +272,11 @@ var DayPicker_DayPicker = function (_React$Component) {
 
     _this.showDayContainer = function () {
       _this.setState({ isOpen: true });
-      _this.setState({ date: _this.props.date });
     };
 
     _this.handleSelect = function (date) {
       _this.setState(function () {
         return {
-          date: date,
           isOpen: false
         };
       });
@@ -286,35 +284,27 @@ var DayPicker_DayPicker = function (_React$Component) {
     };
 
     _this.handlePrevYear = function () {
-      var oldDate = new Date(_this.state.date);
-      var newDate = oldDate.setYear(oldDate.getFullYear() - 1);
-      _this.setState({ date: newDate }, function () {
-        _this.props.onSelect(new Date(_this.state.date));
-      });
+      var newDate = new Date(_this.props.date);
+      newDate.setFullYear(newDate.getFullYear() - 1);
+      _this.props.onSelect(newDate);
     };
 
     _this.handleNextYear = function () {
-      var oldDate = new Date(_this.state.date);
-      var newDate = oldDate.setYear(oldDate.getFullYear() + 1);
-      _this.setState({ date: newDate }, function () {
-        _this.props.onSelect(new Date(_this.state.date));
-      });
+      var newDate = new Date(_this.props.date);
+      newDate.setFullYear(newDate.getFullYear() + 1);
+      _this.props.onSelect(newDate);
     };
 
     _this.handlePrevMonth = function () {
-      var oldDate = new Date(_this.state.date);
-      var newDate = oldDate.setMonth(oldDate.getMonth() - 1);
-      _this.setState({ date: newDate }, function () {
-        _this.props.onSelect(new Date(_this.state.date));
-      });
+      var newDate = new Date(_this.props.date);
+      newDate.setMonth(newDate.getMonth() - 1);
+      _this.props.onSelect(newDate);
     };
 
     _this.handleNextMonth = function () {
-      var oldDate = new Date(_this.props.date);
-      var newDate = oldDate.setMonth(oldDate.getMonth() + 1);
-      _this.setState({ date: newDate }, function () {
-        _this.props.onSelect(new Date(_this.state.date));
-      });
+      var newDate = new Date(_this.props.date);
+      newDate.setMonth(newDate.getMonth() + 1);
+      _this.props.onSelect(newDate);
     };
 
     _this.handleChange = function () {

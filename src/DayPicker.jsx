@@ -15,47 +15,37 @@ class DayPicker extends React.Component {
 
   showDayContainer = () => {
     this.setState({ isOpen: true })
-    this.setState({ date: this.props.date })
   }
 
   handleSelect = (date) => {
     this.setState(() => ({
-      date,
       isOpen: false
     }))
     this.props.onSelect(date)
   }
 
   handlePrevYear = () => {
-    const oldDate = new Date(this.state.date)
-    const newDate = oldDate.setYear(oldDate.getFullYear() - 1)
-    this.setState({ date: newDate }, () => {
-      this.props.onSelect(new Date(this.state.date))
-    })
+    const newDate = new Date(this.props.date)
+    newDate.setFullYear(newDate.getFullYear() - 1)
+    this.props.onSelect(newDate)
   }
 
   handleNextYear = () => {
-    const oldDate = new Date(this.state.date)
-    const newDate = oldDate.setYear(oldDate.getFullYear() + 1)
-    this.setState({ date: newDate }, () => {
-      this.props.onSelect(new Date(this.state.date))
-    })
+    const newDate = new Date(this.props.date)
+    newDate.setFullYear(newDate.getFullYear() + 1)
+    this.props.onSelect(newDate)
   }
 
   handlePrevMonth = () => {
-    const oldDate = new Date(this.state.date)
-    const newDate = oldDate.setMonth(oldDate.getMonth() - 1)
-    this.setState({ date: newDate }, () => {
-      this.props.onSelect(new Date(this.state.date))
-    })
+    const newDate = new Date(this.props.date)
+    newDate.setMonth(newDate.getMonth() - 1)
+    this.props.onSelect(newDate)
   }
 
   handleNextMonth = () => {
-    const oldDate = new Date(this.props.date)
-    const newDate = oldDate.setMonth(oldDate.getMonth() + 1)
-    this.setState({ date: newDate }, () => {
-      this.props.onSelect(new Date(this.state.date))
-    })
+    const newDate = new Date(this.props.date)
+    newDate.setMonth(newDate.getMonth() + 1)
+    this.props.onSelect(newDate)
   }
 
   handleChange = () => {
