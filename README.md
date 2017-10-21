@@ -50,7 +50,7 @@ class App extends React.Component {
 ```
 
 ## Dependencies
-[react](https://reactjs.org/) 
+[react](https://reactjs.org/)    
 [moment.js](https://momentjs.com/)
 
 ## API
