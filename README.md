@@ -5,7 +5,7 @@ A simple and reusable Daypicker component for React
 ![](./docsrc/demo.gif)
 
 ## Installation
-React Input Calendar is available as an npm package.
+react-simple-day-picker is available as an npm package.
 
 ```bash
 npm install react-simple-day-picker --save
